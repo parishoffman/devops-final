@@ -1,16 +1,14 @@
-# backend/app/main.py
+from dotenv import load_dotenv
+load_dotenv()
 
-from fastapi import FastAPI, Depends, HTTPException
-from sqlalchemy.orm import Session
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-# import your Base, engine, and sessionmaker
-from app.database import Base, engine, SessionLocal
-import app.models  # ensure all models are registered
-
-# import any routers you create
+from app.database import Base, engine
+import app.models  # ensure all your models are registered
 from app.routes.example import router as example_router
 
-# create tables
+# Create all database tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
@@ -19,19 +17,18 @@ app = FastAPI(
     version="0.1.0"
 )
 
-def get_db():
-    """
-    Dependency that provides a SQLAlchemy session and ensures it’s closed.
-    """
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+# CORS: allow frontend (localhost:3000) to talk to this API
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/", tags=["health"])
 def health_check():
     return {"status": "ok"}
 
-# include your routers
+# Mount your example router at /api/example
 app.include_router(example_router, prefix="/api/example", tags=["example"])

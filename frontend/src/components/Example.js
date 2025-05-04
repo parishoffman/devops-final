@@ -1,4 +1,3 @@
-// frontend/src/components/Example.js
 import React, { useEffect, useState } from 'react';
 
 export default function Example() {
@@ -7,8 +6,9 @@ export default function Example() {
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/example`)
       .then(r => r.json())
-      .then(data => setMsg(data.msg));
-  }, []);
+      .then(data => setMsg(data.msg))
+      .catch(err => console.error(err));
+  }, []);  
 
   return <p>Backend says: {msg}</p>;
 }
