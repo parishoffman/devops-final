@@ -1,18 +1,27 @@
-# Build stage
 FROM node:18-alpine AS build
-WORKDIR /app
 
-# accept a build-arg and expose it to React
+# Allow passing in the API URL at build time
 ARG REACT_APP_API_URL
 ENV REACT_APP_API_URL=$REACT_APP_API_URL
 
-COPY package*.json ./
+WORKDIR /app
+
+# Install dependencies
+COPY package.json package-lock.json ./
 RUN npm ci
+
+# Copy source and build
 COPY . .
 RUN npm run build
 
-# Production stage
 FROM nginx:alpine
+
+# Copy React build artifacts
 COPY --from=build /app/build /usr/share/nginx/html
+
+# Override default nginx config to proxy /api → backend
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
+
 CMD ["nginx", "-g", "daemon off;"]

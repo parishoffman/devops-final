@@ -1,17 +1,28 @@
 import React, { useEffect } from "react";
 import ContactForm from "./components/ContactForm";
 
-export default function App() {
+function App() {
   useEffect(() => {
-    const timezone   = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const visited_at = new Date().toISOString();
+    // 1) grab IANA timezone
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    // 2) now as ISO
+    const visitedAt = new Date().toISOString();
 
+    // 3) POST to FastAPI
     fetch(`${process.env.REACT_APP_API_URL}/visits`, {
-      method:  "POST",
+      method: "POST",
       headers: { "Content-Type": "application/json" },
-      body:    JSON.stringify({ timezone, visited_at }),
-    }).catch(console.error);
-  }, []);
+      body: JSON.stringify({ timezone, visited_at: visitedAt }),
+    })
+      .then(res => {
+        if (!res.ok) {
+          console.error("Visit logging failed:", res.status, res.statusText);
+        } else {
+          console.log("✅ Visit recorded");
+        }
+      })
+      .catch(err => console.error("Visit logging error:", err));
+  }, []); // runs once when App mounts
 
   return (
     <div className="app">
@@ -20,3 +31,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App;
