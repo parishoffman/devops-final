@@ -6,7 +6,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        REACT_APP_API_URL: "http://backend:8080/api"
+        REACT_APP_API_URL: "http://localhost:8080/api"
     ports:
       - "3000:80"
     depends_on:
@@ -15,19 +15,18 @@ services:
       - portfolio-network
 
   backend:
+    env_file:
+      - ./backend/.env
     build:
       context: ./backend
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      db: 
+        condition: service_healthy
     networks:
       - portfolio-network
-    environment:
-      - DATABASE_URL=mysql+pymysql://root:root@db:3306/portfolio
-      - SECRET_KEY=your_secret_key_here
-      - DEBUG=True
 
   db:
     image: mysql:8.0
@@ -35,13 +34,19 @@ services:
       - mysql_data:/var/lib/mysql
       - ./database/database.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=portfolio
     ports:
       - "3306:3306"
     networks:
       - portfolio-network
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -ppassword || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
 networks:
   portfolio-network:

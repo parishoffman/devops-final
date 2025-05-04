@@ -1,14 +1,21 @@
+# backend/app/main.py
+
 from dotenv import load_dotenv
 load_dotenv()
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.database import Base, engine
-import app.models  # ensure all your models are registered
-from app.routes.example import router as example_router
+# Import database engine and Base
+from .database import Base, engine
+# Import routers via relative paths
+from .routes.visits import router as visits_router
+from .routes.contact import router as contact_router
 
-# Create all database tables
+# Ensure all models are registered for table creation
+from . import models
+
+# Create tables based on models
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
@@ -17,7 +24,7 @@ app = FastAPI(
     version="0.1.0"
 )
 
-# CORS: allow frontend (localhost:3000) to talk to this API
+# Enable CORS for the frontend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
@@ -30,5 +37,6 @@ app.add_middleware(
 def health_check():
     return {"status": "ok"}
 
-# Mount your example router at /api/example
-app.include_router(example_router, prefix="/api/example", tags=["example"])
+# Mount routers
+app.include_router(visits_router,  prefix="/api/visits",  tags=["visits"])
+app.include_router(contact_router, prefix="/api/contact", tags=["contact"])

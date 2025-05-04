@@ -1,11 +1,14 @@
-# backend/app/models.py
-
 from sqlalchemy import Boolean, Column, Integer, String, Text, Date, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
+from app.database import Base
 
-# import Base from your database module
-from .database import Base
+class Visit(Base):
+    __tablename__ = "visits"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    timezone = Column(String(100), nullable=False)
+    visited_at = Column(DateTime, nullable=False)
 
 # Mixin for created_at / updated_at
 class TimestampMixin:
@@ -24,7 +27,6 @@ class User(Base, TimestampMixin):
     username      = Column(String(50), unique=True, index=True, nullable=False)
     email         = Column(String(100), unique=True, index=True, nullable=False)
     password_hash = Column(String(255), nullable=False)
-    # example relationship if you ever want it:
     # projects = relationship("Project", back_populates="owner")
 
 class Project(Base, TimestampMixin):
