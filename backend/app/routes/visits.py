@@ -4,13 +4,9 @@ from app.database import get_db
 from app.models import Visit
 from app.schemas import VisitCreate
 
-router = APIRouter(
-    prefix="/visits",
-    tags=["visits"],
-    responses={404: {"description": "Not found"}},
-)
+router = APIRouter()
 
-@router.post("/visits", status_code=status.HTTP_201_CREATED, summary="Record a new visit")
+@router.post("/", status_code=status.HTTP_201_CREATED, summary="Record a new visit")
 def record_visit(visit: VisitCreate, db: Session = Depends(get_db)):
     """
     Inserts a Visit row (timezone + visited_at) into the database.

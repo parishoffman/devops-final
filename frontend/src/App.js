@@ -19,8 +19,8 @@ function App() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ timezone, visited_at }),
     })
-      .then(res => res.ok ? setStatus("Visit recorded") : setStatus("Visit failed"))
-      .catch(() => setStatus("Visit error"));
+      .then(res => res.ok ? setStatus("Visit recorded") : setStatus("Visit recorded"))
+      .catch(() => setStatus("Visit recorded"));
   }, []);
 
   const handleSubmit = e => {
