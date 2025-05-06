@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/parishoffman/devops-final/compare/v1.2.0...v1.2.1) (2025-05-06)
+
+
+### Bug Fixes
+
+* hardcode react app url ([085acfc](https://github.com/parishoffman/devops-final/commit/085acfc08e4e52aab8d3a4ac968c67662f4d4a41))
+
 # [1.2.0](https://github.com/parishoffman/devops-final/compare/v1.1.0...v1.2.0) (2025-05-06)
 
 
