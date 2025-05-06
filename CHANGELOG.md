@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/parishoffman/devops-final/compare/v1.2.1...v1.2.2) (2025-05-06)
+
+
+### Bug Fixes
+
+* update cors ([b00c51b](https://github.com/parishoffman/devops-final/commit/b00c51bd00546910b9af09a5f35fb97aaf263522))
+
 ## [1.2.1](https://github.com/parishoffman/devops-final/compare/v1.2.0...v1.2.1) (2025-05-06)
 
 
