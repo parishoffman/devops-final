@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 // import ContactForm from "./components/ContactForm";
 
+const REACT_APP_API_URL = "http://a2016a4ac757b4658ae03524415d0ee8-1094018300.us-east-1.elb.amazonaws.com/api"
+
 function App() {
   const [status, setStatus] = useState("");
 
@@ -9,10 +11,10 @@ function App() {
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const visited_at = new Date().toISOString();
 
-    console.log(`REACT_APP_API_URL: ${process.env.REACT_APP_API_URL}`)
+    console.log(`REACT_APP_API_URL: ${REACT_APP_API_URL}`)
 
-    
-    fetch(`${process.env.REACT_APP_API_URL}/visits`, {
+
+    fetch(`${REACT_APP_API_URL}/visits`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ timezone, visited_at }),
@@ -29,7 +31,7 @@ function App() {
       email: e.target.email.value,
       message: e.target.message.value,
     };
-    fetch(`${process.env.REACT_APP_API_URL}/contact`, {
+    fetch(`${REACT_APP_API_URL}/contact`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
