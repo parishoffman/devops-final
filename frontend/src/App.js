@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import ContactForm from "./components/ContactForm";
 
-const REACT_APP_API_URL = "http://a2016a4ac757b4658ae03524415d0ee8-1094018300.us-east-1.elb.amazonaws.com/api"
+const REACT_APP_API_URL = "http://a2323f91955df4a00bd008f86bdb0659-1012515975.us-east-1.elb.amazonaws.com/api"
 
 function App() {
   const [status, setStatus] = useState("");
@@ -91,7 +91,7 @@ function App() {
       </main>
 
       <footer>
-        &copy; {new Date().getFullYear()} My Name. Built with ♥ in React.
+        &copy; {new Date().getFullYear()} Paris. Built with ♥ in React.
       </footer>
     </>
   );
