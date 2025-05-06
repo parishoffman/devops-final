@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/parishoffman/devops-final/compare/v1.0.3...v1.1.0) (2025-05-06)
+
+
+### Features
+
+* ci updates ([30226c8](https://github.com/parishoffman/devops-final/commit/30226c87e601b20b4a536af342204913934747ad))
+* ci updates ([a4639ef](https://github.com/parishoffman/devops-final/commit/a4639efa49c580181251f895fbe65c3abe35a560))
+
 ## [1.0.3](https://github.com/parishoffman/devops-final/compare/v1.0.2...v1.0.3) (2025-05-06)
 
 
