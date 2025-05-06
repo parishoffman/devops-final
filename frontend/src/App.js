@@ -9,6 +9,7 @@ function App() {
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const visited_at = new Date().toISOString();
 
+
     fetch(`${process.env.REACT_APP_API_URL}/visits`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
