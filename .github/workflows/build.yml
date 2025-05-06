@@ -38,10 +38,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
   build:
+    needs: release
     env:
       ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
       ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
-      TAG: ${{ inputs.tag }}
+      TAG: ${{ needs.outputs.new_release_version }}
       AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
     name: Build Docker Image and Push to ECR
     runs-on: ubuntu-latest
@@ -76,10 +77,14 @@ jobs:
 
           # Tag the image locally
           docker tag frontend:latest $ECR_REGISTRY/frontend:latest
+          docker tag frontend:latest $ECR_REGISTRY/frontend:$TAG
           docker tag backend:latest $ECR_REGISTRY/backend:latest
+          docker tag backend:latest $ECR_REGISTRY/backend:$TAG
           echo "Done tagging image"
 
           # Push the images to ECR
           docker push $ECR_REGISTRY/frontend:latest
+          docker push $ECR_REGISTRY/frontend:$TAG
           docker push $ECR_REGISTRY/backend:latest
+          docker push $ECR_REGISTRY/backend:$TAG
           echo "Done Pushing images"
