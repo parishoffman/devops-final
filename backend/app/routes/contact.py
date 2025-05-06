@@ -18,8 +18,8 @@ def _send_email(contact: ContactCreate):
     """
     Reads SMTP credentials from the environment and sends the email via Ethereal.
     """
-    smtp_user = "guy.stoltenberg@ethereal.email"
-    smtp_pass = "qbEcErpZZK8u7jCcEF"
+    smtp_user = "sandrine.kuhlman96@ethereal.email"
+    smtp_pass = "X3n8jDHrY4mCz3tKCG"
 
     if not smtp_user or not smtp_pass:
         raise RuntimeError("Missing SMTP credentials")
