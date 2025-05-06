@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/parishoffman/devops-final/compare/v1.2.2...v1.3.0) (2025-05-06)
+
+
+### Features
+
+* updated react app api url and fixed visits api ([efd0b85](https://github.com/parishoffman/devops-final/commit/efd0b854868bae31aca1aa1bbec9ca8416dbe7ed))
+
 ## [1.2.2](https://github.com/parishoffman/devops-final/compare/v1.2.1...v1.2.2) (2025-05-06)
 
 
