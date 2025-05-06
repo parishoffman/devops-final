@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/parishoffman/devops-final/compare/v1.0.0...v1.0.1) (2025-05-06)
+
+
+### Bug Fixes
+
+* updated image tags ([ed572ab](https://github.com/parishoffman/devops-final/commit/ed572abd4adb7d72159da8d125978f3160cf0f52))
+
 # 1.0.0 (2025-05-06)
 
 
