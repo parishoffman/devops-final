@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/parishoffman/devops-final/compare/v1.3.0...v1.4.0) (2025-05-06)
+
+
+### Features
+
+* updated api endpoint: ([056a74f](https://github.com/parishoffman/devops-final/commit/056a74fbebe6ee2f57a57a7b051786a222a9f028))
+
 # [1.3.0](https://github.com/parishoffman/devops-final/compare/v1.2.2...v1.3.0) (2025-05-06)
 
 
