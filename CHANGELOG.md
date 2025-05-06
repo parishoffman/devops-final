@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/parishoffman/devops-final/compare/v1.0.2...v1.0.3) (2025-05-06)
+
+
+### Bug Fixes
+
+* updated logging ([eae588c](https://github.com/parishoffman/devops-final/commit/eae588c6bb818b765bbc9230062267794a074a87))
+
 ## [1.0.2](https://github.com/parishoffman/devops-final/compare/v1.0.1...v1.0.2) (2025-05-06)
 
 
