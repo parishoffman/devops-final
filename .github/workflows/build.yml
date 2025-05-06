@@ -42,7 +42,7 @@ jobs:
     env:
       ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
       ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
-      TAG: ${{ needs.outputs.new_release_version }}
+      TAG: ${{ needs.release.outputs.new_release_version }}
       AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
     name: Build Docker Image and Push to ECR
     runs-on: ubuntu-latest
