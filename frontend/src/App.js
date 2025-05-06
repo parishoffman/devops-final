@@ -10,6 +10,7 @@ function App() {
     const visited_at = new Date().toISOString();
 
     console.log(`REACT_APP_API_URL: ${process.env.REACT_APP_API_URL}`)
+
     
     fetch(`${process.env.REACT_APP_API_URL}/visits`, {
       method: "POST",
