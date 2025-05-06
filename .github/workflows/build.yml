@@ -3,8 +3,6 @@ name: Build and Push to ECR
 on:
   push:
     branches: [main]
-
-on:
   workflow_dispatch:
 
 permissions:
