@@ -14,6 +14,7 @@ function App() {
     console.log(`REACT_APP_API_URL: ${REACT_APP_API_URL}`)
 
 
+    
     fetch(`${REACT_APP_API_URL}/visits`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
