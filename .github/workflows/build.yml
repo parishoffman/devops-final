@@ -1,0 +1,83 @@
+name: Build and Push to ECR
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  check:
+    name: Check Conventional Commits
+    runs-on: ubuntu-latest
+    environment: main
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Conventional Commits
+        uses: webiny/action-conventional-commits@v1.3.0
+
+  release:
+    runs-on: ubuntu-latest
+    name: Semantic Release
+    outputs:
+      new_release_version: ${{ steps.semantic.outputs.new_release_version }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Semantic Release
+        id: semantic
+        uses: cycjimmy/semantic-release-action@v4.1.1
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  build:
+    env:
+      ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
+      ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+      TAG: ${{ inputs.tag }}
+      AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
+    name: Build Docker Image and Push to ECR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Export AWS_ACCOUNT
+        run: |
+          export AWS_ACCOUNT=${{ env.AWS_ACCOUNT }}
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v4
+
+      - name: Build Docker Image and Push to ECR
+        run: |
+          # Build the images
+          cd frontend
+          docker build -t frontend  .
+          cd ../backend
+          docker build -t backend .
+          echo "Done buildings images"
+
+          # Tag the image locally
+          docker tag frontend:latest $ECR_REGISTRY/frontend:latest
+          docker tag backend:latest $ECR_REGISTRY/backend:latest
+          echo "Done tagging image"
+
+          # Push the images to ECR
+          docker push $ECR_REGISTRY/frontend:latest
+          docker push $ECR_REGISTRY/backend:latest
+          echo "Done Pushing images"
