@@ -1,43 +1,25 @@
-/* Global styles */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Dark mode transition */
-html,
-body {
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-}
+/* App-specific styles - no Tailwind directives here */
 
 /* Animation for floating effect */
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
-.animate-float {
-  animation: float 4s ease-in-out infinite;
-}
-
-/* Applying dark mode to custom elements not covered by Tailwind */
-.dark .custom-light-only {
-  display: none;
-}
-
-.custom-dark-only {
-  display: none;
-}
-
-.dark .custom-dark-only {
-  display: block;
-}
-
-/* Original app styling that you might already have */
-.app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-}
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  /* Applying dark mode to custom elements not covered by Tailwind */
+  .dark .custom-light-only {
+    display: none;
+  }
+  
+  .custom-dark-only {
+    display: none;
+  }
+  
+  .dark .custom-dark-only {
+    display: block;
+  }
