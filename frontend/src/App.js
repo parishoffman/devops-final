@@ -6,37 +6,31 @@ import Work from "./components/Work";
 import About from "./components/About";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
+import "./index.css"
+import "./components/ContactForm.css"
 
 const REACT_APP_API_URL = "http://a2323f91955df4a00bd008f86bdb0659-1012515975.us-east-1.elb.amazonaws.com/api";
 
 function App() {
   const [status, setStatus] = useState("");
   
-  // Initialize dark mode based on user preference or localStorage
   const [darkMode, setDarkMode] = useState(() => {
-    // Check if there's a saved preference in localStorage
-    const savedMode = localStorage.getItem('darkMode');
-    if (savedMode !== null) {
-      return savedMode === 'true';
-    }
-    // Otherwise check for system preference
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const saved = localStorage.getItem("darkMode");
+    if (saved !== null) return saved === "true";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
 
   // Apply dark mode class when component mounts and when darkMode changes
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
-    // Save preference to localStorage
-    localStorage.setItem('darkMode', darkMode);
+    localStorage.setItem("darkMode", darkMode);
   }, [darkMode]);
 
-  const toggleDarkMode = () => {
-    setDarkMode(prevMode => !prevMode);
-  };
+  const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
   // Log a visit on initial load - KEEPING YOUR ORIGINAL CODE
   useEffect(() => {
@@ -57,7 +51,7 @@ function App() {
   return (
     <div className={darkMode ? 'dark' : ''}>
       <div className="bg-white dark:bg-gray-900 min-h-screen">
-        <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+        <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
         
         {/* Hero Section */}
         <section id="intro" className="pt-24 lg:pt-36 pb-16 lg:pb-24">
@@ -65,7 +59,7 @@ function App() {
             <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16">
               <div className="lg:w-1/2 animate-float">
                 <h1 className="text-4xl lg:text-6xl font-bold leading-tight text-gray-900 dark:text-white mb-6">
-                  Welcome to <span className="text-blue-600 dark:text-blue-400">My Portfolio</span>
+                  Hello! <span className="text-blue-600 dark:text-blue-400">My name is Paris Hoffman.</span>
                 </h1>
                 <p className="text-xl text-gray-600 dark:text-gray-300 mb-4">
                   I design and develop experiences that make people's lives simpler.
