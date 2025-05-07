@@ -1,3 +1,12 @@
+# [1.6.0](https://github.com/parishoffman/devops-final/compare/v1.5.0...v1.6.0) (2025-05-07)
+
+
+### Features
+
+* **css:** styling ([13c2fcc](https://github.com/parishoffman/devops-final/commit/13c2fcc0230425515ad677f426ac81e3f7f8b60f))
+* **css:** testing ([bdbeaf4](https://github.com/parishoffman/devops-final/commit/bdbeaf4fcdfe924aed22ffeed92fa8429d5b2ac5))
+* **css:** updates ([3305a78](https://github.com/parishoffman/devops-final/commit/3305a7824e298cbdcd9fe54466b99331d02c43bf))
+
 # [1.5.0](https://github.com/parishoffman/devops-final/compare/v1.4.0...v1.5.0) (2025-05-06)
 
 
