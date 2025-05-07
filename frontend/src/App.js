@@ -8,7 +8,6 @@ import "./components/ContactForm.css";
 import Header from "./components/Header";
 import Services from "./components/Services";
 import Work from "./components/Work";
-import Work from "./components/Work";
 import About from "./components/About";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
