@@ -1,9 +1,12 @@
+/* Tailwind directives - keep these only here, not in App.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Google Font import */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* Custom variables */
 :root {
   --bg: #f9f9f9;
   --text: #333;
@@ -20,6 +23,7 @@
   --card-bg: #1f2937;
 }
 
+/* Base styles */
 * {
   box-sizing: border-box;
 }
@@ -30,18 +34,7 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-/* Animation for floating effect */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
-.animate-float {
-  animation: float 4s ease-in-out infinite;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 html {

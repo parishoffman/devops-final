@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { FiSun, FiMoon } from "react-icons/fi";
 
 const Header = ({ darkMode, toggleDarkMode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -45,7 +44,11 @@ const Header = ({ darkMode, toggleDarkMode }) => {
               className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 focus:outline-none"
               aria-label="Toggle theme"
             >
-              {darkMode ? <FiSun className="text-yellow-500" /> : <FiMoon className="text-gray-700" />}
+              {darkMode ? (
+                <span className="text-yellow-500 text-xl">☀️</span> 
+              ) : (
+                <span className="text-gray-700 text-xl">🌙</span>
+              )}
             </button>
           </nav>
           
@@ -56,7 +59,11 @@ const Header = ({ darkMode, toggleDarkMode }) => {
               className="p-2 mr-4 rounded-full bg-gray-100 dark:bg-gray-800 focus:outline-none"
               aria-label="Toggle theme"
             >
-              {darkMode ? <FiSun className="text-yellow-500" /> : <FiMoon className="text-gray-700" />}
+              {darkMode ? (
+                <span className="text-yellow-500 text-xl">☀️</span>
+              ) : (
+                <span className="text-gray-700 text-xl">🌙</span>
+              )}
             </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
