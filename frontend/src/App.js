@@ -1,19 +1,35 @@
 import React, { useState, useEffect } from "react";
-// import ContactForm from "./components/ContactForm";
+import "./App.css";
+import Header from "./components/Header";
+import Work from "./components/Work";
+import Services from "./components/Services";
+import About from "./components/About";
+import ContactForm from "./components/ContactForm";
+import Footer from "./components/Footer";
 
 const REACT_APP_API_URL = "http://a2323f91955df4a00bd008f86bdb0659-1012515975.us-east-1.elb.amazonaws.com/api"
 
 function App() {
   const [status, setStatus] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
 
-  // Log a visit on initial load
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    // Add dark class to document for global styling
+    if (!darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
+
+  // Log a visit on initial load - KEEPING YOUR ORIGINAL CODE
   useEffect(() => {
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const visited_at = new Date().toISOString();
 
     console.log(`REACT_APP_API_URL: ${REACT_APP_API_URL}`)
-
-
     
     fetch(`${REACT_APP_API_URL}/visits`, {
       method: "POST",
@@ -24,6 +40,7 @@ function App() {
       .catch(() => setStatus("Visit recorded"));
   }, []);
 
+  // KEEPING YOUR ORIGINAL FORM HANDLER
   const handleSubmit = e => {
     e.preventDefault();
     const data = {
@@ -43,58 +60,65 @@ function App() {
   };
 
   return (
-    <>
-      <header>
-        <nav>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
-
-      <main>
-        <section id="intro">
-          <h1>Welcome to My Portfolio</h1>
-          <p style={{ textAlign: "center" }}>
-            A showcase of my work, skills, and experiences.
-          </p>
-          <p style={{ textAlign: "center", fontStyle: "italic", color: "#777" }}>
-            {status}
-          </p>
-        </section>
-
-        <section id="projects">
-          <h2>Projects</h2>
-          <div className="projects-grid">
-            {/* Replace with dynamic data or add more cards */}
-            <div className="project-card">
-              <h3>Project One</h3>
-              <p>Brief description goes here.</p>
-              <a href="#">View Details →</a>
+    <div className={darkMode ? 'dark' : ''}>
+      <div className="bg-white dark:bg-gray-900 min-h-screen">
+        <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+        
+        <main>
+          {/* Hero Section */}
+          <section id="intro" className="pt-24 lg:pt-36 pb-16 lg:pb-24">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16">
+                <div className="lg:w-1/2 animate-float">
+                  <h1 className="text-4xl lg:text-6xl font-bold leading-tight text-gray-900 dark:text-white mb-6">
+                    Welcome to My Portfolio
+                  </h1>
+                  <p className="text-xl text-gray-600 dark:text-gray-300 mb-4">
+                    A showcase of my work, skills, and experiences.
+                  </p>
+                  <p className="text-gray-500 dark:text-gray-400 italic mb-8">
+                    {status}
+                  </p>
+                  <div className="flex flex-wrap gap-4">
+                    <a 
+                      href="#contact" 
+                      className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-colors"
+                    >
+                      Get in Touch
+                    </a>
+                    <a 
+                      href="#work" 
+                      className="px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-medium rounded-md transition-colors"
+                    >
+                      View Projects
+                    </a>
+                  </div>
+                </div>
+                
+                <div className="lg:w-1/2">
+                  <div className="relative">
+                    <div className="w-full h-80 lg:h-96 bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden">
+                      {/* Replace with your hero image */}
+                      <div className="w-full h-full flex items-center justify-center text-gray-500 dark:text-gray-400">
+                        <span className="text-lg">Profile Image</span>
+                      </div>
+                    </div>
+                    <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-blue-100 dark:bg-blue-900 rounded-lg -z-10"></div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="project-card">
-              <h3>Project Two</h3>
-              <p>Another description.</p>
-              <a href="#">View Details →</a>
-            </div>
-          </div>
-        </section>
-
-        <section id="contact">
-          <h2>Contact Me</h2>
-          <form onSubmit={handleSubmit}>
-            <input name="first_name" placeholder="First Name" required />
-            <input name="last_name" placeholder="Last Name" required />
-            <input name="email" type="email" placeholder="Email" required />
-            <textarea name="message" rows="4" placeholder="Your message..." required />
-            <button type="submit">Send Message</button>
-          </form>
-        </section>
-      </main>
-
-      <footer>
-        &copy; {new Date().getFullYear()} Paris. Built with ♥ in React.
-      </footer>
-    </>
+          </section>
+          
+          <Work />
+          <Services />
+          <About />
+          <ContactForm handleSubmit={handleSubmit} />
+        </main>
+        
+        <Footer />
+      </div>
+    </div>
   );
 }
 
