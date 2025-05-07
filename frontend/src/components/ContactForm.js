@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./ContactForm.css";
 
+const REACT_APP_API_URL = "http://a2323f91955df4a00bd008f86bdb0659-1012515975.us-east-1.elb.amazonaws.com/api"
 export default function ContactForm() {
   const [form, setForm] = useState({
     first_name: "",
@@ -21,7 +22,7 @@ export default function ContactForm() {
 
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/contact`,
+        `${REACT_APP_API_URL}/contact`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
