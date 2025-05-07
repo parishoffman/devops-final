@@ -8,9 +8,12 @@ import "./components/ContactForm.css";
 import Header from "./components/Header";
 import Services from "./components/Services";
 import Work from "./components/Work";
+import Work from "./components/Work";
 import About from "./components/About";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
+import "./index.css"
+import "./components/ContactForm.css"
 
 const REACT_APP_API_URL = "http://a2323f91955df4a00bd008f86bdb0659-1012515975.us-east-1.elb.amazonaws.com/api";
 // const REACT_APP_API_URL = "http://localhost:8080/api"
