@@ -1,0 +1,33 @@
+/* ContactForm.css */
+.checkmark-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background-color: #22c55e;
+    color: white;
+    margin: 0 auto;
+  }
+  
+  .success-message {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Additional styles for basic form in case your existing styles don't cover it */
+  .contact-form input, 
+  .contact-form textarea {
+    width: 100%;
+  }
+  
+  .contact-form button {
+    cursor: pointer;
+    font-weight: 500;
+  }
